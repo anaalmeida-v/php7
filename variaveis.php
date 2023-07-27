@@ -22,9 +22,11 @@
     $peso = 50.5;
 
     //boolean - simples, armazena estado de true ou false(muito utilizadas em testes lógicos)
-    $fumante_sn = true;//(true=1) ou false = vazio
-
-    ?>
+    $fumante_sn = true; //(true=1) ou false = vazio
+    
+    //...lógica...//
+    $idade = '30' //valor final da variável
+        ?>
 
     <h1>Ficha cadastral</h1>
     <br />
