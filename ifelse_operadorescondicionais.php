@@ -18,7 +18,7 @@
     //<=
     //>=
     
-    //caso haja apenas uma condição de if, chave não é necessária
+    //caso haja apenas uma condição de if, chave não é necessária(isso não é recomendado de ser feito)
     if (1 >= 2) {
         echo 'Verdadeiro';
     } else {
