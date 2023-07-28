@@ -17,7 +17,7 @@
         echo 'Atende aos requisitos';
     } else {
         echo 'Não atende aos requisitos';
-    }
+    } 
     ?>
 </body>
 
