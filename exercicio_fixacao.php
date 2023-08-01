@@ -37,6 +37,20 @@
     }
     echo impostoRenda(2000);
     ?>
+
+    <h1>Exercício 3 - Criar script que gera array aleatório através de um laço de repetição</h1>
+    <?php
+    $elementos = []; //array onde serão incluídos os números
+    
+    while (count($elementos) <= 5) { //enquanto 'elementos' for menor ou igual a 5
+        $aleatorio = rand(1, 60); //variável 'aleatorio' gera um número aleatório entre 1 e 60
+    
+        if (!in_array($aleatorio, $elementos)) { //verificando se número aleatório está no array('!'se não estiver..)
+            $elementos[] = $aleatorio; //executa a adição do mesmo no array
+        }
+    }
+    print_r($elementos); //exibindo elementos
+    ?>
 </body>
 
 </html>
