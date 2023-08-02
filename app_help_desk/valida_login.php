@@ -1,13 +1,39 @@
 <?php
-/*print_r($_GET); //get - resgata dados
+
+//variável verifica se a autenticação foi realizada
+$usuarios_autenticado = false; //false pois vira true apenas se entrar na condição verdadeira
+
+//usuários do sistema
+$usuarios_app = [
+    ['email' => 'adm@teste.com.br', 'senha' => '123456'],
+    ['email' => 'user@teste.com.br', 'senha' => 'abcd'],
+];
+
+foreach ($usuarios_app as $user) {
+    $user['email'];
+    $user['senha'];
+
+    if ($user['email'] == $_POST['email'] && $user['senha'] == $_POST['senha']) { //verifica se senha e email declaras na variável corresponde as que foram passadas no formulário
+        $usuarios_autenticado = true; //fica true pois não há a necessidade da autenticação do usuário não é necessária
+    }
+}
+
+if ($usuarios_autenticado) {
+    echo 'Usuário autenticado';
+} else {
+    header('Location: index.php?login=erro'); //haverá um encaminhamento do usuário; destino: página inicial
+} //login=erro é um parâmetro que será passado para a URL
+
+/*print_r($_GET); //GET - resgata dados
 echo '<br/>';
 $_GET['email'];
 echo '<br/>';
 $_GET['senha'];*/
 
-print_r($_POST); //POST - posta dados (usuário consegue visualizar)
-echo '<br/>';
-$_POST['email'];
-echo '<br/>';
-$_POST['senha'];
+/*print_r($_POST); //POST - posta dados (usuário consegue visualizar através deste método)
+  echo '<br/>';
+  echo $_POST['email'];
+  echo '<br/>';
+  echo $_POST['senha'];
+*/
 ?>
