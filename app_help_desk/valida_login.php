@@ -1,4 +1,6 @@
 <?php
+session_start(); //quando se trabalha com sessão é fundamental executar essa função, antes de qualquer instrução que emita uma saída de dados no navegador
+
 
 //variável verifica se a autenticação foi realizada
 $usuarios_autenticado = false; //false pois vira true apenas se entrar na condição verdadeira
@@ -20,7 +22,9 @@ foreach ($usuarios_app as $user) {
 
 if ($usuarios_autenticado) {
     echo 'Usuário autenticado';
+    $_SESSION['autenticado'] = 'SIM';
 } else {
+    $_SESSION['autenticado'] = 'NÃO';
     header('Location: index.php?login=erro'); //haverá um encaminhamento do usuário; destino: página inicial
 } //login=erro é um parâmetro que será passado para a URL
 
