@@ -1,6 +1,7 @@
 <?php require_once "validador_acesso.php" ?>
 
 <html>
+
 <head>
   <meta charset="utf-8" />
   <title>App Help Desk</title>
@@ -62,11 +63,11 @@
 
                   <div class="row mt-5">
                     <div class="col-6">
-                      <button class="btn btn-lg btn-warning btn-block" type="submit">Voltar</button>
+                      <a class="btn btn-lg btn-warning btn-block" href="home.php" type="submit">Voltar</a>
                     </div>
 
                     <div class="col-6">
-                      <button class="btn btn-lg btn-info btn-block" type="submit">Abrir</button>
+                      <a class="btn btn-lg btn-info btn-block" href="" type="submit">Abrir</a>
                     </div>
                   </div>
                 </form>
