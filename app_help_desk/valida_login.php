@@ -1,10 +1,8 @@
 <?php
 session_start(); //quando se trabalha com sessão é fundamental executar essa função, antes de qualquer instrução que emita uma saída de dados no navegador
-
-
+   
 //variável verifica se a autenticação foi realizada
 $usuarios_autenticado = false; //false pois vira true apenas se entrar na condição verdadeira
-
 //usuários do sistema
 $usuarios_app = [
     ['email' => 'adm@teste.com.br', 'senha' => '123456'],
