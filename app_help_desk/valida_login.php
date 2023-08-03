@@ -21,6 +21,8 @@ foreach ($usuarios_app as $user) {
 if ($usuarios_autenticado) {
     echo 'Usuário autenticado';
     $_SESSION['autenticado'] = 'SIM';
+    $_SESSION['x'] = 'um valor';
+    $_SESSION['y'] = 'outro valor';
     header('Location: home.php'); //haverá um encaminhamento do usuário; destino: home
 } else {
     $_SESSION['autenticado'] = 'NÃO';
