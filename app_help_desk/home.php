@@ -1,13 +1,6 @@
-<?php
-session_start();
+<?php require_once "validador_acesso.php" ?>
 
-if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] != 'SIM')
-  ;
-header('Location: index.php?login=erro2');
-echo $_SESSION['autenticado'];
-?>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <title>App Help Desk</title>
