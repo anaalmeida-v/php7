@@ -1,5 +1,26 @@
 <?php require_once "validador_acesso.php" ?>
 
+<?php
+//chamados
+$chamados = [];
+
+//abrir o arquivo.hd
+$arquivo = fopen('arquivo.hd', 'r'); //r - indica que arquivo só será lido
+
+//percorrer arquivo .hd enquanto houver registros(linhas) a serem recuperadas
+while (!feof($arquivo)) { //feof(end of file) - percorre arquivo recuperando cada linha, até o fim do arquivo
+  //como esta função nativa retorna true apenas quando há o final da função, utilizamos o sinal de negação durante a leitura das linhas(pois não é o finaldo arquivo)
+
+  //linhas
+  $registro = fgets($arquivo); //parâmetro encaminhado é a referência do arquivo que está aberto($arquivo)
+  $chamados[] = $registro; //colocando cada registro no array de chamados no geral
+
+}
+
+//fechar arquivo aberto
+fclose($arquivo);
+?>
+
 <html>
 
 <head>
@@ -43,23 +64,27 @@
 
           <div class="card-body">
 
-            <div class="card mb-3 bg-light">
-              <div class="card-body">
-                <h5 class="card-title">Título do chamado...</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                <p class="card-text">Descrição do chamado...</p>
+            <?php foreach ($chamados as $chamado) { ?>
+              <?php $chamado_dados = explode('#', $chamado); //retorna array com os dados existentes em chamados que cada item foi nomeado como chamado
+                if (count($chamado_dados) < 3) { //se houver menos que 3 elementos(titulo,categoria,descricao), que são os existentes dentro desse array. Estará faltando um deles.. logo:
+                  continue; //não exibe, continua e segue para a impressão normalmente
+                }
 
+                ?>
+              <div class="card mb-3 bg-light">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <?= $chamado_dados[0] //recuperando dados do array de chamados, usando índice para trazer um por vez?>
+                  </h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    <?= $chamado_dados[1] ?>
+                  </h6>
+                  <p class="card-text">
+                    <?= $chamado_dados[2] ?>
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div class="card mb-3 bg-light">
-              <div class="card-body">
-                <h5 class="card-title">Título do chamado...</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                <p class="card-text">Descrição do chamado...</p>
-
-              </div>
-            </div>
+            <? } ?>
 
             <div class="row mt-5">
               <div class="col-6">
