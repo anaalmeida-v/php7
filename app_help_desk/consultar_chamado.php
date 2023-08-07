@@ -3,7 +3,6 @@
 <?php
 //chamados
 $chamados = [];
-
 //abrir o arquivo.hd
 $arquivo = fopen('arquivo.hd', 'r'); //r - indica que arquivo só será lido
 
@@ -13,12 +12,23 @@ while (!feof($arquivo)) { //feof(end of file) - percorre arquivo recuperando cad
 
   //linhas
   $registro = fgets($arquivo); //parâmetro encaminhado é a referência do arquivo que está aberto($arquivo)
-  $chamados[] = $registro; //colocando cada registro no array de chamados no geral
+  $registro_dados = explode('#', $registro);
 
+  if ($_SESSION['perfil_id'] == 2) {
+    //só exibe chamado se perfil foi criado por usuário, que índice é 2 
+    if ($_SESSION['id'] != $registro_dados[0]) { //verificando se índice id(2) é diferente do usuário responsável por fazer cadastro
+      continue; //desconsidera codificação a seguir, pois não é necessário
+    } else {
+      $chamados[] = $registro; //colocando cada registro no array de chamados no geral
+    }
+  } else {
+    $chamados[] = $registro; //colocando cada registro no array de chamados no geral
+  }
 }
 
 //fechar arquivo aberto
 fclose($arquivo);
+
 ?>
 
 <html>
@@ -63,26 +73,17 @@ fclose($arquivo);
           </div>
 
           <div class="card-body">
-
-            <?php foreach ($chamados as $chamado) { ?>
-              <?php $chamado_dados = explode('#', $chamado); //retorna array com os dados existentes em chamados que cada item foi nomeado como chamado
-              
-                if ($_SESSION['perfil_id'] == 2) {
-                  //só exibe chamado se perfil foi criado por usuário, que índice é 2 
-                  if ($_SESSION['id'] != $chamado_dados[0]) { //verificando se índice id(2) é diferente do usuário responsável por fazer cadastro
-                    continue; //desconsidera codificação a seguir, pois não é necessário
-                  }
-                }
-
-                if (count($chamado_dados) < 3) { //se houver menos que 3 elementos(titulo,categoria,descricao), que são os existentes dentro desse array. Estará faltando um deles.. logo:
-                  continue; //não exibe, continua e segue para a impressão normalmente
-                }
-
-                ?>
+            <? foreach ($chamados as $chamado) { ?>
+              <?php
+              $chamado_dados = explode('#', $chamado);
+              //não existe detalhes do chamado se ele não estiver completo
+              if (count($chamado_dados) < 3) {
+                continue;
+              }
+              ?>
               <div class="card mb-3 bg-light">
                 <div class="card-body">
-                  <h5 class="card-title">
-                    <?= $chamado_dados[1] //recuperando dados do array de chamados, usando índice para trazer um por vez?>
+                  <?= $chamado_dados[1] //recuperando dados do array de chamados, usando índice para trazer um por vez?>
                   </h5>
                   <h6 class="card-subtitle mb-2 text-muted">
                     <?= $chamado_dados[2] ?>
@@ -90,9 +91,10 @@ fclose($arquivo);
                   <p class="card-text">
                     <?= $chamado_dados[3] ?>
                   </p>
+                  </p>
                 </div>
               </div>
-            <? } ?>
+            <?php } ?>
 
             <div class="row mt-5">
               <div class="col-6">
