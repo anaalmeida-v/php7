@@ -1,9 +1,5 @@
 <?php
-
-echo '<pre>';
-print_r($_POST);
-echo '</pre>';
-
+session_start();
 //abrindo arquivo
 $arquivo = fopen('arquivo.hd', 'a'); //a - abre arquivo apenas para escrita
 
@@ -20,7 +16,7 @@ $descricao = str_replace('#', '-', $_POST['descricao']);
 //função nativa do php que com base em um determinado caractere, transforma array em string
 
 //escrevendo texto do arquivo
-$texto = $titulo . "#" . $categoria . "#" . $descricao . PHP_EOL; //php_eol - fim de linha (para assim, quando forem adicionados outros textos haver a quebra de linha)
+$texto = $_SESSION['id'] . '#' . $titulo . "#" . $categoria . "#" . $descricao . PHP_EOL; //php_eol - fim de linha (para assim, quando forem adicionados outros textos haver a quebra de linha)
 
 //exibindo texto do arquivo
 fwrite($arquivo, $texto);
@@ -29,5 +25,5 @@ fwrite($arquivo, $texto);
 //fechando arquivo 
 fclose($arquivo);
 //echo $texto;
-header('Location: abrir_chamado.php');//encaminhando para abrir_chamado.php novamente
+header('Location: abrir_chamado.php'); //encaminhando para abrir_chamado.php novamente
 ?>

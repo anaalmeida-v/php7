@@ -1,7 +1,7 @@
-<?php require_once "validador_acesso.php" ?>
-
+<?php require_once "validador_acesso.php";
+//session_start foi feita no validador_acesso.php e já está sendo executada, logo, não precisa ser passada
+?>
 <html>
-
 <head>
   <meta charset="utf-8" />
   <title>App Help Desk</title>
