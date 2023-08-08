@@ -4,7 +4,7 @@
 //chamados
 $chamados = [];
 //abrir o arquivo.hd
-$arquivo = fopen('arquivo.hd', 'r'); //r - indica que arquivo só será lido
+$arquivo = fopen('../../app_help_desk/arquivo.hd', 'r'); //r - indica que arquivo só será lido
 
 //percorrer arquivo .hd enquanto houver registros(linhas) a serem recuperadas
 while (!feof($arquivo)) { //feof(end of file) - percorre arquivo recuperando cada linha, até o fim do arquivo
