@@ -6,9 +6,11 @@ class Funcionario
 
     //atributos
     //primeira palavra sempre minúscula, mas se houver mais de uma, a/s outra/s começam com letra maiúscula
-    public $nome = 'José';
-    public $telefone = '11 99999-8888';
-    public $numFilhos = 2;
+    public $nome = null;
+    public $telefone = null;
+    public $numFilhos = null;
+
+    //getters e setters
 
     //métodos - na prática são funções
     //padrão de definição de nomes segue mesma regra da definição de variáveis-atributos
