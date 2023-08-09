@@ -45,7 +45,7 @@ class Funcionario
     //padrão de definição de nomes segue mesma regra da definição de variáveis-atributos
     function resumirCadFunc()
     {
-        return "$this->nome possui $this->numFilhos filho(s)";
+        return $this->__get('nome') . "possui" . $this->__get('numFilhos   ') . "filho(s)";
     }
 
     function modificarNumFilhos($numFilhos)
@@ -60,22 +60,12 @@ $y = new Funcionario();
 $y->__set('nome', 'Jose');
 $y->__set('numFilhos', 2);
 echo $y->resumirCadFunc();
-//criando objeto com base no modelo Funcionário e atribuindo ele a variável $y
-//a partir dessa variável estamos recebendo os atributos e métodos do objeto
-echo '<br/>';
-echo $y->__get('nome') . ' possui ' . $y->__get('numFilhos') . ' filho(s) ';
-
-//acessando atributos ou métodos(->):
-//echo $y->resumirCadFunc(); //exibindo resumo do cadastro do funcionario
-//$y->modificarNumFilhos(3); //modificando num de filhos
-//echo $y->resumirCadFunc(); //exibindo  cadastro novamente (com informação de numFilhos atualizada)
-echo '<hr/>';
+//echo $y->__get('nome') . ' possui ' . $y->__get('numFilhos') . ' filho(s) ';
 
 //nova instância de objeto / novo funcionário
 $x = new Funcionario();
 $x->__set('nome', 'Maria');
 $x->__set('numFilhos', 0);
-echo $x->__get('nome') . ' possui ' . $x->__get('numFilhos') . ' filho(s) ';
-
-
+echo $y->resumirCadFunc();
+//  echo $x->__get('nome') . ' possui ' . $x->__get('numFilhos') . ' filho(s) ';
 ?>
