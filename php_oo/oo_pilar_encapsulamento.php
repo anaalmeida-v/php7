@@ -32,7 +32,42 @@ class Pai
     }
 }
 
+class Filho extends Pai
+{
+    public function __construct()
+    {
+        //exibir os métodos do objeto
+        echo '<pre>';
+        print_r(get_class_methods($this)); //espera receber por parâmetro um objeto e retorna um array com a relação de métodos internos desse objeto
+        echo '</pre>';
+    }
+
+    private function executarMania()
+    {
+        echo 'Cantar';
+    }
+    protected function responder()
+    {
+        echo 'Olá';
+    }
+
+    public function x()
+    {
+        $this->executarMania();
+    }
+}
+
+/*
 $pai = new Pai();
 //echo $pai->humor;
-echo $pai->executarAcao();
+echo $pai->executarAcao();*/
+
+$filho = new Filho();
+echo '<pre>';
+print_r($filho);
+echo '</pre>';
+
+$filho->executarAcao();
+echo '<br/>';
+$filho->x();
 ?>
