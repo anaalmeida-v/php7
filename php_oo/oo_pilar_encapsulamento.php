@@ -32,7 +32,7 @@ class Pai
     }
 }
 
-class Filho extends Pai
+class Filho extends Pai //filho herda todos o s atributos e métodos public e protected
 {
     public function __construct()
     {
@@ -41,7 +41,6 @@ class Filho extends Pai
         print_r(get_class_methods($this)); //espera receber por parâmetro um objeto e retorna um array com a relação de métodos internos desse objeto
         echo '</pre>';
     }
-
     private function executarMania()
     {
         echo 'Cantar';
@@ -50,7 +49,6 @@ class Filho extends Pai
     {
         echo 'Olá';
     }
-
     public function x()
     {
         $this->executarMania();
