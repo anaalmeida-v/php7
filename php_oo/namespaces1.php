@@ -14,9 +14,9 @@ class Cliente implements \B\CadastroInterface
     {
         return $this->$attr;
     }
-    public function salvar()
+    public function remover()
     {
-        echo 'Salvar';
+        echo 'Remover';
     }
 }
 
@@ -27,7 +27,7 @@ interface CadastroInterface
 
 namespace B;
 
-class Cliente implements CadastroInterface
+class Cliente implements \A\CadastroInterface
 {
     public $nome = 'Ana';
     public function __construct()
@@ -44,10 +44,14 @@ class Cliente implements CadastroInterface
     {
         echo 'Salvar';
     }
+    public function remover()
+    {
+        echo 'Remover';
+    }
 }
 interface CadastroInterface
 {
-    public function salvar();
+    public function remover();
 }
 //-------------------
 $c = new \B\Cliente();
