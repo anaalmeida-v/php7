@@ -8,8 +8,9 @@ require "./bibliotecas/PHPMailer/POP3.php"; //-->especificações do protocolo d
 require "./bibliotecas/PHPMailer/SMTP.php"; //-->especificações do protocolo de envio de email
 
 //namespaces - importante para a configuração de envio de email
-use PHPMailer\PHPMailer\PHPMailer;//extraindo recursos com o namespace
+use PHPMailer\PHPMailer\PHPMailer; //extraindo recursos com o namespace
 use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
 
 //quando extraímos esses namespaces que reservam classes para a biblioteca PHPMailer (para não haver nenhum tipo de conflito em relação a nome de recursos dentro da aplicação)
 //podemos utilizar esses recursos ao longo da lógica do código
@@ -50,38 +51,37 @@ if (!$mensagem->mensagemValida()) { //se mensagem não for válida (pelo menos u
     echo 'Mensagem é válida';
     die(); //mata processamento do script no ponto em que a instrução é lida
 }
-$mail = new PHPMailer(true);//produz instância de PHPMailer
+$mail = new PHPMailer(true); //produz instância de PHPMailer
 //criando objeto com base na clasee
 //testando
 //codificacao da biblioteca phpmailer
 try {
     //Server settings
-    $mail->SMTPDebug = 2; //Enable verbose debug output
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
     $mail->isSMTP(); //Send using SMTP
-    $mail->Host = 'smtp.example.com'; //Set the SMTP server to send through
+    $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
     $mail->SMTPAuth = true; //Enable SMTP authentication
-    $mail->Username = 'user@example.com'; //SMTP username
-    $mail->Password = 'secret'; //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-    $mail->Port = 587; //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
+    $mail->Username = 'testeanaalmeida@gmail.com'; //SMTP username
+    $mail->Password = 'Teste123#'; //SMTP password
+    $mail->SMTPSecure = 'tls'; //Enable implicit TLS encryption
+    $mail->Port = 587; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('from@example.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User'); //Add a recipient
-    $mail->addAddress('ellen@example.com'); //Name is optional
-    $mail->addReplyTo('info@example.com', 'Information');
-    $mail->addCC('cc@example.com');
-    $mail->addBCC('bcc@example.com');
+    $mail->setFrom('testeanaalmeida@gmail.com', 'Ana Almeida Remetente'); //remetente do email (quem o envia)
+    $mail->addAddress('aninhaalmeidav', 'Aninha Destinatário'); //destinatário do email (quem o recebe)
+    //$mail->addReplyTo('info@example.com', 'Information');//contato padrão caso o destiatário deseje responder o remetente
+    //$mail->addCC('cc@example.com');//adiciona destinatário de cópias
+    //$mail->addBCC('bcc@example.com');//cópia oculta
 
-    //Attachments
-    $mail->addAttachment('/var/tmp/file.tar.gz'); //Add attachments
-    $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); //Optional name
+    //Attachments - possibilidade de adicionar anexo ao email
+    //$mail->addAttachment('/var/tmp/file.tar.gz'); //Add attachments
+    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg'); //Optional name
 
     //Content
     $mail->isHTML(true); //Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body = 'This is the HTML message body <b>in bold!</b>';
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+    $mail->Subject = 'Oi, eu sou o assunto.'; //assunto do email
+    $mail->Body = 'Oi, eu sou o conteúdo do <strong>e-mail</strong>'; //conteúdo
+    $mail->AltBody = 'Oi, eu sou o conteúdo do e-mail';
 
     $mail->send();
     echo 'Message has been sent';
