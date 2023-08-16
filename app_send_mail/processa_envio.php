@@ -68,7 +68,7 @@ try {
 
     //Recipients
     $mail->setFrom('testeanaalmeida@gmail.com', 'Ana Almeida Remetente'); //remetente do email (quem o envia)
-    $mail->addAddress('r.filho@envoy.tec.br', 'Aninha Destinatário'); //destinatário do email (quem o recebe)
+    $mail->addAddress($mensagem->__get('para')); //destinatário do email (quem o recebe)
     //$mail->addReplyTo('info@example.com', 'Information');//contato padrão caso o destiatário deseje responder o remetente
     //$mail->addCC('cc@example.com');//adiciona destinatário de cópias
     //$mail->addBCC('bcc@example.com');//cópia oculta
@@ -79,12 +79,12 @@ try {
 
     //Content
     $mail->isHTML(true); //Set email format to HTML
-    $mail->Subject = 'Oi, eu sou o assunto.'; //assunto do email
-    $mail->Body = 'Oi, eu sou o <conteu></conteu>do do <strong>e-mail</strong>'; //conteúdo
-    $mail->AltBody = 'Oi, eu sou o conteúdo do e-mail';
+    $mail->Subject = $mensagem->__get('assunto'); //assunto do email
+    $mail->Body = $mensagem->__get('mensagem'); //conteúdo
+    $mail->AltBody = 'É necessário  utilizar um client que suporte HTML para ter acesso total ao conteúdo dessa mensagem';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'Email enviado com sucesso';
 } catch (Exception $e) {
     echo "Não foi possivel enviar este e-mail! Por favor tente novamente mais tarde.";
     echo 'Detalhes do erro: ' . $mail->ErrorInfo;
