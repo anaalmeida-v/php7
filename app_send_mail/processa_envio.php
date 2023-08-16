@@ -8,8 +8,9 @@ require "./bibliotecas/PHPMailer/POP3.php"; //-->especificações do protocolo d
 require "./bibliotecas/PHPMailer/SMTP.php"; //-->especificações do protocolo de envio de email
 
 //namespaces - importante para a configuração de envio de email
-use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\PHPMailer;//extraindo recursos com o namespace
 use PHPMailer\PHPMailer\Exception;
+
 //quando extraímos esses namespaces que reservam classes para a biblioteca PHPMailer (para não haver nenhum tipo de conflito em relação a nome de recursos dentro da aplicação)
 //podemos utilizar esses recursos ao longo da lógica do código
 
@@ -32,8 +33,8 @@ class Mensagem
     public function mensagemValida()
     {
 
-        if (empty($this->para) || empty($this->assunto) || empty($this->mensagem)) {//empty verifica se variável está vazia
-        //verifica se pelo menos um campo estiver vazio
+        if (empty($this->para) || empty($this->assunto) || empty($this->mensagem)) { //empty verifica se variável está vazia
+            //verifica se pelo menos um campo estiver vazio
             return false; //mensagem não é válida
         }
         return true; //se não, mensagem é válida
@@ -49,18 +50,20 @@ if (!$mensagem->mensagemValida()) { //se mensagem não for válida (pelo menos u
     echo 'Mensagem é válida';
     die(); //mata processamento do script no ponto em que a instrução é lida
 }
+$mail = new PHPMailer(true);//produz instância de PHPMailer
+//criando objeto com base na clasee
 //testando
 //codificacao da biblioteca phpmailer
 try {
     //Server settings
-    $mail->SMTPDebug = SMTP::DEBUG_SERVER; //Enable verbose debug output
+    $mail->SMTPDebug = 2; //Enable verbose debug output
     $mail->isSMTP(); //Send using SMTP
     $mail->Host = 'smtp.example.com'; //Set the SMTP server to send through
     $mail->SMTPAuth = true; //Enable SMTP authentication
     $mail->Username = 'user@example.com'; //SMTP username
     $mail->Password = 'secret'; //SMTP password
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
-    $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
+    $mail->Port = 587; //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
 
     //Recipients
     $mail->setFrom('from@example.com', 'Mailer');
@@ -83,7 +86,7 @@ try {
     $mail->send();
     echo 'Message has been sent';
 } catch (Exception $e) {
-    echo "Não foi possível enviar este e-mail! Por favor tente novamente mais tarde";
-    echo "Detalhes do erro: {$mail->ErrorInfo}";
+    echo "Não foi possivel enviar este e-mail! Por favor tente novamente mais tarde.";
+    echo 'Detalhes do erro: ' . $mail->ErrorInfo;
 }
 ?>
