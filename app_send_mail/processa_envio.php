@@ -49,10 +49,11 @@ $mensagem->__set('mensagem', $_POST['mensagem']);
 //print_r($mensagem)
 if (!$mensagem->mensagemValida()) { //se mensagem não for válida (pelo menos um dos campos não estiverem preenchidos) -->entra no if
     echo 'Mensagem é válida';
-    die(); //mata processamento do script no ponto em que a instrução é lida
+    //die(); //mata processamento do script no ponto em que a instrução é lida
+    header('Location: index.php'); //redirecionando usuário(caso acesso seja inválido) para página inicial do app
 }
 $mail = new PHPMailer(true); //produz instância de PHPMailer
-//criando objeto com base na clasee
+//criando objeto com base na classe
 //testando
 //codificacao da biblioteca phpmailer
 try {
