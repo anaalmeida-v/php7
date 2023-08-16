@@ -62,13 +62,13 @@ try {
     $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
     $mail->SMTPAuth = true; //Enable SMTP authentication
     $mail->Username = 'testeanaalmeida@gmail.com'; //SMTP username
-    $mail->Password = 'Teste123#'; //SMTP password
+    $mail->Password = 'kjnpnzduarwdiyxq'; //SMTP password
     $mail->SMTPSecure = 'tls'; //Enable implicit TLS encryption
     $mail->Port = 587; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
     $mail->setFrom('testeanaalmeida@gmail.com', 'Ana Almeida Remetente'); //remetente do email (quem o envia)
-    $mail->addAddress('aninhaalmeidav', 'Aninha Destinatário'); //destinatário do email (quem o recebe)
+    $mail->addAddress('r.filho@envoy.tec.br', 'Aninha Destinatário'); //destinatário do email (quem o recebe)
     //$mail->addReplyTo('info@example.com', 'Information');//contato padrão caso o destiatário deseje responder o remetente
     //$mail->addCC('cc@example.com');//adiciona destinatário de cópias
     //$mail->addBCC('bcc@example.com');//cópia oculta
@@ -80,7 +80,7 @@ try {
     //Content
     $mail->isHTML(true); //Set email format to HTML
     $mail->Subject = 'Oi, eu sou o assunto.'; //assunto do email
-    $mail->Body = 'Oi, eu sou o conteúdo do <strong>e-mail</strong>'; //conteúdo
+    $mail->Body = 'Oi, eu sou o <conteu></conteu>do do <strong>e-mail</strong>'; //conteúdo
     $mail->AltBody = 'Oi, eu sou o conteúdo do e-mail';
 
     $mail->send();
