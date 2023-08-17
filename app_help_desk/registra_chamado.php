@@ -1,7 +1,7 @@
 <?php
 session_start();
 //abrindo arquivo
-$arquivo = fopen('../../app_help_desk/arquivo.hd', 'a'); //a - abre arquivo apenas para escrita
+$arquivo = fopen('../../../app_help_desk/arquivo.hd', 'a'); //a - abre arquivo apenas para escrita
 
 /*if (isset($_POST['categoria'])) {
     $categoriaValue = $_POST['categoria'];
