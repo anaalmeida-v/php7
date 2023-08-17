@@ -45,6 +45,7 @@
               <div class="col">
 
                 <form action="registra_chamado.php" method="post">
+
                   <div class="form-group">
                     <label>Título</label>
                     <input name="titulo" type="text" class="form-control" placeholder="Título">
